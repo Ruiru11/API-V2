@@ -3,7 +3,7 @@ h1 = (
 CREATE TABLE IF NOT EXISTS MEALS(
 name VARCHAR(20) NOT NULL,
 description VARCHAR(30) NOT NULL,
-meal_id INTEGER PRIMARY KEY
+meal_id VARCHAR PRIMARY KEY
 )
 """)
 
@@ -21,11 +21,12 @@ item VARCHAR NOT NULL
 
 h2 = ("""
 CREATE TABLE IF NOT EXISTS USERS(
-id serial primary key,
+id VARCHAR primary key,
 username VARCHAR(10) NOT NULL,
-email VARCHAR(20) NOT NULL,
+email VARCHAR(20) NOT NULL UNIQUE,
 password VARCHAR NOT NULL,
-address VARCHAR(20) NOT NULL
+address VARCHAR(20) NOT NULL,
+role VARCHAR(20) NOT NULL
 )
 """)
 
