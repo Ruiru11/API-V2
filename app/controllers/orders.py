@@ -29,14 +29,14 @@ class Orders(object):
 
     def get_orders(self):
         self.connection.cursor.execute("""SELECT * FROM orders""")
-        news = self.connection.cursor.fetchall()
-        return(jsonify(news))
+        response = self.connection.cursor.fetchall()
+        return(jsonify(response))
 
     def get_order(self, id):
         self.connection.cursor.execute(
             " SELECT * FROM orders WHERE order_id=%s ", [id])
-        cat = self.connection.cursor.fetchone()
-        return(make_response(jsonify(cat)))
+        response = self.connection.cursor.fetchone()
+        return(make_response(jsonify(response)))
 
     def update_order(self, id):
         self.connection.cursor.execute(
