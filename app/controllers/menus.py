@@ -1,6 +1,7 @@
 from flask import jsonify, make_response
 from app.models.Database import Database_connection
 import psycopg2
+import uuid
 
 class Menus(object):
     def __init__(self):
@@ -8,14 +9,16 @@ class Menus(object):
 
     def create_menu(self,data):
         try:
+            meal_id = str(uuid.uuid4())
             self.connection.cursor.execute("""INSERT INTO meals(meal_id, name, description)
             VALUES(%s, %s, %s);""",
-                                (data['meal_id'], data['name'], data['description']))
+                                (meal_id, data['name'], data['description']))
             print("INSERTING DATA into MEALS")
             response_object = {
                 "status":""
             }
-
+            return(make_response(jsonify(response_object)))
+            
         except (Exception, psycopg2.DatabaseError) as error:
             print("ERROR inserting into meals", error)
 
